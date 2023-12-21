@@ -1,18 +1,30 @@
-const CategoryModel = require('../models/category.model');
+const FilmModel = require('../models/film.model');
 
-module.exports.getCategories = async (req, res) => {
+module.exports.getFilm = async (req, res) => {
+
+    let page = req.query.page || 1;
     // Je récupère ma clé d'API dans un fichier .env
     const apiKey = process.env.IMDB_API_KEY;
 
     // Je configure l'URL avec la clé à l'intérieur
-    const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=fr`;
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${page}&with_genres=12&language=fr`;
 
     const response = await fetch(url);
-    const genres = await response.json();
+    const data = await response.json();
     
+    //
+
+    const films = data.results;
+    const mesFilms = [];
+
+    console.log(`nb films : ${films.length}`)
+
+    films.forEach(film => {
+        mesFilms.push(new FilmModel(film));
+    });
+
+
+
     // Ce que j'affiche à l'utilisateur
-    res.json(genres)
+    res.json(mesFilms)
 };
-
-
-// faire 3 modules exports : 1 pour la recherche, 1 pour la sauvegarde et 1 pour 

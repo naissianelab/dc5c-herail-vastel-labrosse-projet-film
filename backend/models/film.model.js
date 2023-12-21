@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const filmSchema = mongoose.Schema(
+const movieSchema = mongoose.Schema(
     {
-        name: {
+        original_title: {
             type: String,
             required: true
         },
@@ -10,8 +10,13 @@ const filmSchema = mongoose.Schema(
             type: Number,
             required: true
         },
-        
+        genre_ids: {
+            type: String,
+        },
+        vote_average: {
+            type: Number,
+        }
     }
 )
 
-module.exports = mongoose.model('Categories', categorySchema);
+module.exports = mongoose.model('Movies', movieSchema);

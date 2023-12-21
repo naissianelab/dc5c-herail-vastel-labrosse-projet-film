@@ -21,6 +21,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/categories', require('./routes/api/category.route'));
+app.use('/api/film', require('./routes/api/film.route'));
 
 app.listen(port, () => {
     console.log("app démarrée");
