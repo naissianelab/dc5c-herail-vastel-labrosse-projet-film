@@ -5,7 +5,7 @@ module.exports.getCategories = async (req, res) => {
     const apiKey = process.env.IMDB_API_KEY;
 
     // Je configure l'URL avec la clé à l'intérieur
-    const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=fr`;
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${page}&with_genres=12&language=fr`;
 
     const response = await fetch(url);
     const genres = await response.json();
