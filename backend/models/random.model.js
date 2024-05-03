@@ -11,16 +11,12 @@ const randomSchema = mongoose.Schema(
             required: true
         },
         genre_ids: {
-            type: String,
+            type: [Number],
         },
         vote_average: {
             type: Number,
-        },
-        title: {
-            type: String,
-            required : true
         }
     }
 )
 
-module.exports = mongoose.model('Aléatoire', randomSchema);
+module.exports = mongoose.model('Aleatoire', randomSchema);
